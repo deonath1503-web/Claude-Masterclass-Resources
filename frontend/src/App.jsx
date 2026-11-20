@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuth } from "./auth.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Landing from "./pages/Landing.jsx";
 import MatchPage from "./pages/MatchPage.jsx";
 import Pipeline from "./pages/Pipeline.jsx";
 import ResumePage from "./pages/ResumePage.jsx";
@@ -25,7 +26,7 @@ function Layout({ children }) {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand"><span className="logo">H</span> HireTrack <em>AI</em></div>
+        <div className="brand"><span className="logo">F</span> Falvoxa</div>
         <button className="menu-btn" aria-label="Menu" onClick={() => setOpen((o) => !o)}>☰</button>
         <nav className={open ? "open" : ""} onClick={() => setOpen(false)}>
           {links.map(([to, label]) => (
@@ -49,7 +50,7 @@ export default function App() {
     <Routes>
       <Route path="/login" element={user ? <Navigate to="/" replace /> : <AuthPage mode="login" />} />
       <Route path="/signup" element={user ? <Navigate to="/" replace /> : <AuthPage mode="signup" />} />
-      <Route path="/" element={authed(<Dashboard />)} />
+      <Route path="/" element={user ? authed(<Dashboard />) : <Landing />} />
       <Route path="/pipeline" element={authed(<Pipeline />)} />
       <Route path="/match" element={authed(<MatchPage />)} />
       <Route path="/resume" element={authed(<ResumePage />)} />
